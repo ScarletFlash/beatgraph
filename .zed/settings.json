@@ -1,0 +1,59 @@
+{
+  "formatter": [{
+    "external": {
+      "arguments": ["run", "--silent", "prettier", "--stdin-filepath", "{buffer_path}"],
+      "command": "pnpm"
+    }
+  }],
+  "languages": {
+    "CSharp": {
+      "formatter": "language_server"
+    },
+    "CSS": {
+      "language_servers": ["tailwindcss-language-server"]
+    },
+    "JSON": {
+      "language_servers": ["json-language-server", "package-version-server"]
+    },
+    "JSONC": {
+      "language_servers": ["json-language-server"]
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "language_servers": ["typescript-ls", "eslint"]
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "language_servers": ["typescript-ls", "eslint", "tailwindcss-language-server"]
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "language_servers": ["typescript-ls", "eslint", "tailwindcss-language-server"]
+    },
+    "Typespec": {
+      "language_servers": ["tsp-server"]
+    },
+    "YAML": {
+      "language_servers": ["yaml-language-server"]
+    }
+  },
+  "lsp": {
+    "roslyn": {
+      "settings": {
+        "csharp|background_analysis": {
+          "dotnet_analyzer_diagnostics_scope": "openFiles",
+          "dotnet_compiler_diagnostics_scope": "openFiles"
+        },
+        "csharp|formatting": {
+          "dotnet_organize_imports_on_format": true
+        }
+      }
+    }
+  }
+}

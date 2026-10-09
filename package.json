@@ -1,0 +1,40 @@
+{
+  "name": "@beatgraph/workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "🚀": "One-liners",
+    "build": "pnpm run turbo-run --filter='*' build",
+    "check": "pnpm run turbo-run --filter='*' check",
+    "fix": "pnpm run turbo-run fix",
+    "test": "pnpm run turbo-run --filter='*' test",
+    "🏗️": "Compiling",
+    "check:cargo": "pnpm run turbo-run check:cargo",
+    "check:tsc": "pnpm run turbo-run check:tsc",
+    "🛂": "Code analysis",
+    "check:clippy": "pnpm run turbo-run check:clippy",
+    "fix:clippy": "pnpm run turbo-run fix:clippy",
+    "🎨": "Formatting",
+    "check:rustfmt": "pnpm run turbo-run check:rustfmt",
+    "fix:rustfmt": "pnpm run turbo-run fix:rustfmt",
+    "📦": "Releasing",
+    "bump-version": "pnpm run turbo-run bump-version",
+    "⚙️": "Tools configuration",
+    "turbo": "turbo --color --no-update-notifier",
+    "turbo-run": "pnpm run turbo run --continue=dependencies-successful --env-mode=strict --log-order=stream --cache-dir=./.turbo --concurrency=75%",
+    "changeset": "changeset",
+    "🦾": "Automatic",
+    "postinstall": "turbo telemetry disable"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "catalog:codebase",
+    "@changesets/cli": "catalog:codebase",
+    "turbo": "catalog:stack",
+    "wasm-pack": "catalog:codebase"
+  },
+  "engines": {
+    "node": "24.21.0",
+    "pnpm": "12.10.1"
+  },
+  "packageManager": "pnpm@12.10.1"
+}

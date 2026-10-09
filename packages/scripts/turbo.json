@@ -1,0 +1,30 @@
+{
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "bump-version": {
+      "cache": false,
+      "passThroughEnv": ["GITHUB_TOKEN"],
+      "persistent": false
+    },
+    "check": {
+      "dependsOn": ["check:scripts", "check:src"]
+    },
+    "check:scripts": {
+      "cache": true,
+      "dependsOn": ["^transit"],
+      "inputs": ["./scripts/**/*.ts", "./src/**/*.ts", "./tsconfig.scripts.json", "./package.json"],
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:src": {
+      "cache": true,
+      "dependsOn": ["^transit"],
+      "inputs": ["./src/**/*.ts", "./tsconfig.src.json", "./package.json"],
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    }
+  }
+}

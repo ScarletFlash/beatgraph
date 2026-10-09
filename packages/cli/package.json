@@ -1,0 +1,44 @@
+{
+  "name": "beatgraph",
+  "version": "0.0.0",
+  "description": "BeatGraph command-line interface",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScarletFlash/beatgraph.git",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "bin": {
+    "beatgraph": "./dist/rspack/main.mjs"
+  },
+  "publishConfig": {
+    "directory": "dist/rspack"
+  },
+  "scripts": {
+    "build:cargo": "cargo build --locked --target-dir dist/cargo",
+    "build:rspack": "rspack build",
+    "check:cargo": "cargo check --locked",
+    "check:clippy": "cargo clippy --locked -- -D warnings",
+    "check:rustfmt": "cargo fmt --check",
+    "check:tsc:configs": "tsc --project tsconfig.configs.json --noEmit",
+    "check:tsc:scripts": "tsc --project tsconfig.scripts.json --noEmit",
+    "check:tsc:src": "tsc --project tsconfig.src.json --noEmit",
+    "fix:clippy": "cargo clippy --locked --fix --allow-dirty --allow-staged",
+    "fix:rustfmt": "cargo fmt",
+    "postpack": "tsx --tsconfig ./tsconfig.scripts.json scripts/postpack.script.ts",
+    "prepack": "tsx --tsconfig ./tsconfig.scripts.json scripts/prepack.script.ts",
+    "publish-platform-packages": "tsx --tsconfig ./tsconfig.scripts.json scripts/publish-platform-packages.script.ts"
+  },
+  "devDependencies": {
+    "@beatgraph/configs": "workspace:*",
+    "@beatgraph/scripts": "workspace:*",
+    "@rspack/cli": "catalog:codebase",
+    "@rspack/core": "catalog:codebase",
+    "@types/node": "catalog:stack",
+    "arktype": "catalog:stack",
+    "detect-libc": "catalog:stack",
+    "tsx": "catalog:stack",
+    "typescript": "catalog:stack"
+  }
+}

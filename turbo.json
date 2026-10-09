@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/turbo/schema.json",
+  "futureFlags": {
+    "experimentalCargoWorkspaces": true,
+    "experimentalTaskCommand": true,
+    "globalConfiguration": true
+  },
+  "global": {
+    "inputs": ["!./packages/*/dist/**", "pnpm-*.yaml", "turbo.json"],
+    "ui": "stream"
+  },
+  "tasks": {
+    "build": {
+      "cache": false,
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "check": {
+      "cache": false,
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "fix": {
+      "cache": false,
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "test": {
+      "cache": true,
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    },
+    "transit": {
+      "dependsOn": ["^transit"],
+      "outputs": []
+    }
+  }
+}

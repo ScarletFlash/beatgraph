@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "rootDir": "./src"
+  },
+  "extends": "@beatgraph/configs/typescript/node.json",
+  "include": ["src/**/*.mts"]
+}

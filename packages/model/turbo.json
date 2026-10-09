@@ -1,0 +1,56 @@
+{
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "cache": true,
+      "command": ["cargo", "build", "--locked", "--target-dir", "dist/cargo"],
+      "outputLogs": "full",
+      "outputs": ["./dist/cargo/**"],
+      "persistent": false
+    },
+    "check": {
+      "command": null,
+      "dependsOn": ["check:cargo", "check:clippy", "check:rustfmt"]
+    },
+    "check:cargo": {
+      "cache": true,
+      "command": ["cargo", "check", "--locked"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/.cargo/config.toml", "$TURBO_ROOT$/Cargo.toml"],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:clippy": {
+      "cache": true,
+      "command": ["cargo", "clippy", "--locked", "--", "-D", "warnings"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/.cargo/config.toml", "$TURBO_ROOT$/Cargo.toml"],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:rustfmt": {
+      "cache": true,
+      "command": ["cargo", "fmt", "--check"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/Cargo.toml"],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "fix": {
+      "dependsOn": ["fix:clippy", "fix:rustfmt"]
+    },
+    "fix:clippy": {
+      "cache": false,
+      "command": ["cargo", "clippy", "--locked", "--fix", "--allow-dirty", "--allow-staged"],
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "fix:rustfmt": {
+      "cache": false,
+      "command": ["cargo", "fmt"],
+      "outputLogs": "errors-only",
+      "persistent": false
+    }
+  }
+}

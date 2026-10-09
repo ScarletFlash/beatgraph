@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
+  },
+  "display": "Config files",
+  "extends": "./node.json",
+  "include": ["${configDir}/*.config.ts", "${configDir}/*.config.mts"]
+}

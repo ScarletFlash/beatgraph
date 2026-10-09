@@ -1,0 +1,120 @@
+{
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "command": null,
+      "dependsOn": ["build:cargo", "build:rspack"]
+    },
+    "build:cargo": {
+      "cache": true,
+      "inputs": [
+        "./Cargo.toml",
+        "./src/**/*.rs",
+        "$TURBO_ROOT$/.cargo/config.toml",
+        "$TURBO_ROOT$/Cargo.lock",
+        "$TURBO_ROOT$/Cargo.toml",
+        "$TURBO_ROOT$/rust-toolchain.toml"
+      ],
+      "outputLogs": "full",
+      "outputs": ["./dist/cargo/**"],
+      "persistent": false
+    },
+    "build:rspack": {
+      "cache": true,
+      "inputs": ["./src/**/*.mts", "./rspack.config.mts", "./package.json"],
+      "outputLogs": "full",
+      "outputs": ["./dist/rspack/**"],
+      "persistent": false
+    },
+    "check": {
+      "command": null,
+      "dependsOn": ["check:cargo", "check:clippy", "check:rustfmt", "check:tsc"]
+    },
+    "check:cargo": {
+      "cache": true,
+      "inputs": [
+        "./Cargo.toml",
+        "./src/**/*.rs",
+        "$TURBO_ROOT$/.cargo/config.toml",
+        "$TURBO_ROOT$/Cargo.lock",
+        "$TURBO_ROOT$/Cargo.toml",
+        "$TURBO_ROOT$/rust-toolchain.toml"
+      ],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:clippy": {
+      "cache": true,
+      "inputs": [
+        "./Cargo.toml",
+        "./src/**/*.rs",
+        "$TURBO_ROOT$/.cargo/config.toml",
+        "$TURBO_ROOT$/Cargo.lock",
+        "$TURBO_ROOT$/Cargo.toml",
+        "$TURBO_ROOT$/rust-toolchain.toml"
+      ],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:rustfmt": {
+      "cache": true,
+      "inputs": ["./Cargo.toml", "./src/**/*.rs", "$TURBO_ROOT$/Cargo.toml", "$TURBO_ROOT$/rust-toolchain.toml"],
+      "outputLogs": "errors-only",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:tsc": {
+      "dependsOn": ["check:tsc:configs", "check:tsc:scripts", "check:tsc:src"]
+    },
+    "check:tsc:configs": {
+      "cache": true,
+      "dependsOn": ["^transit"],
+      "inputs": ["./*.config.{ts,mts}", "./tsconfig.configs.json", "./package.json"],
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:tsc:scripts": {
+      "cache": true,
+      "dependsOn": ["^transit"],
+      "inputs": ["./scripts/**/*.ts", "./tsconfig.scripts.json", "./package.json"],
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    },
+    "check:tsc:src": {
+      "cache": true,
+      "dependsOn": ["^transit"],
+      "inputs": ["./src/**/*.mts", "./tsconfig.src.json", "./package.json"],
+      "outputLogs": "full",
+      "outputs": [],
+      "persistent": false
+    },
+    "fix": {
+      "dependsOn": ["fix:clippy", "fix:rustfmt"]
+    },
+    "fix:clippy": {
+      "cache": false,
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "fix:rustfmt": {
+      "cache": false,
+      "outputLogs": "errors-only",
+      "persistent": false
+    },
+    "test": {
+      "inputs": [
+        "./Cargo.toml",
+        "./src/**/*.rs",
+        "$TURBO_ROOT$/.cargo/config.toml",
+        "$TURBO_ROOT$/Cargo.lock",
+        "$TURBO_ROOT$/Cargo.toml",
+        "$TURBO_ROOT$/rust-toolchain.toml"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@beatgraph/configs",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "directory": "packages/configs",
+    "type": "git",
+    "url": "git+https://github.com/ScarletFlash/beatgraph.git"
+  },
+  "files": ["./typescript/*.json"],
+  "exports": {
+    "./*": "./*"
+  }
+}

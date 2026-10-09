@@ -1,0 +1,4 @@
+{
+  "extends": "@beatgraph/configs/typescript/node.json",
+  "include": ["scripts/**/*"]
+}

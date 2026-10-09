@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src"
+  },
+  "extends": "@beatgraph/configs/typescript/node.json",
+  "include": ["src/**/*.ts"]
+}
