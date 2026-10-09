@@ -1,6 +1,6 @@
 {
   "name": "beatgraph",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "BeatGraph command-line interface",
   "license": "MIT",
   "repository": {
